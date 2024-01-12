@@ -39,10 +39,6 @@ resource "google_sql_database_instance" "secondary" {
 
   master_instance_name = google_sql_database_instance.primary.name
 
-  replica_configuration {
-    failover_target = "true"
-  }
-
   settings {
     tier = var.gcp_pg_tier
   }
