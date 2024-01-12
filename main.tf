@@ -1,6 +1,6 @@
 resource "google_project_service" "services" {
   project = var.project
-  service = "sql-component.googleapis.com"
+  service = "sqladmin.googleapis.com"
 }
 
 resource "time_sleep" "wait_30_seconds" {
