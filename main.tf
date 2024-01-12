@@ -1,4 +1,4 @@
-resource "google_project_service" "sql-component" {
+resource "google_project_service" "services" {
   project = var.project
   service = "sql-component.googleapis.com"
 }
@@ -16,6 +16,9 @@ resource "google_sql_database_instance" "primary" {
       value = var.gcp_pg_db_flag_value
     }
   }
+
+  depends_on = [google_project_service.services]
+
 }
 
 resource "google_sql_database_instance" "secondary" {
