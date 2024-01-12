@@ -37,7 +37,7 @@ variable "gcp_pg_tier" {
 
 variable "gcp_pg_db_flag_name" {
   type    = string
-  default = "cloudsql.logical_decoding"
+  default = "cloudsql.logical"
 }
 
 variable "gcp_pg_db_flag_value" {
