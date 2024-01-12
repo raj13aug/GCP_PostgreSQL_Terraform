@@ -1,3 +1,7 @@
+resource "google_project_service" "sql-component" {
+  project = var.project
+  service = "sql-component.googleapis.com"
+}
 
 resource "google_sql_database_instance" "primary" {
   name             = var.gcp_pg_name_primary
