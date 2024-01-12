@@ -16,11 +16,6 @@ resource "google_sql_database_instance" "primary" {
 
   settings {
     tier = var.gcp_pg_tier
-
-    database_flags {
-      name  = var.gcp_pg_db_flag_name
-      value = var.gcp_pg_db_flag_value
-    }
   }
 
   depends_on = [google_project_service.services, time_sleep.wait_30_seconds]
@@ -40,10 +35,6 @@ resource "google_sql_database_instance" "secondary" {
 
   settings {
     tier = var.gcp_pg_tier
-    database_flags {
-      name  = var.gcp_pg_db_flag_name
-      value = var.gcp_pg_db_flag_value
-    }
   }
 }
 
