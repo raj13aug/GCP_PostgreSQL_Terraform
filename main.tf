@@ -1,16 +1,19 @@
 resource "google_project_service" "services" {
-  project = var.project
-  service = "sqladmin.googleapis.com"
+  project            = var.project
+  service            = "sqladmin.googleapis.com"
+  disable_on_destroy = false
 }
 
 resource "google_project_service" "sql-component" {
-  project = var.project
-  service = "sql-component.googleapis.com"
+  project            = var.project
+  service            = "sql-component.googleapis.com"
+  disable_on_destroy = false
 }
 
 resource "google_project_service" "servicenetworking" {
-  project = var.project
-  service = "servicenetworking.googleapis.com"
+  project            = var.project
+  service            = "servicenetworking.googleapis.com"
+  disable_on_destroy = false
 }
 
 resource "time_sleep" "wait_30_seconds" {
@@ -20,9 +23,11 @@ resource "time_sleep" "wait_30_seconds" {
 }
 
 resource "google_sql_database_instance" "primary" {
-  name             = var.gcp_pg_name_primary
-  database_version = var.gcp_pg_database_version
-  region           = var.gcp_pg_region_primary
+  name                = var.gcp_pg_name_primary
+  database_version    = var.gcp_pg_database_version
+  region              = var.gcp_pg_region_primary
+  deletion_protection = false
+
 
   settings {
     tier = var.gcp_pg_tier
@@ -33,9 +38,10 @@ resource "google_sql_database_instance" "primary" {
 }
 
 resource "google_sql_database_instance" "secondary" {
-  name             = var.gcp_pg_name_secondary
-  database_version = var.gcp_pg_database_version
-  region           = var.gcp_pg_region_secondary
+  name                = var.gcp_pg_name_secondary
+  database_version    = var.gcp_pg_database_version
+  region              = var.gcp_pg_region_secondary
+  deletion_protection = false
 
   master_instance_name = google_sql_database_instance.primary.name
 
