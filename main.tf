@@ -23,7 +23,7 @@ resource "google_sql_database_instance" "primary" {
     }
   }
 
-  depends_on = [google_project_service.services, time_resource.wait_30_seconds]
+  depends_on = [google_project_service.services, time_sleep.wait_30_seconds]
 
 }
 
