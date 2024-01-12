@@ -3,6 +3,12 @@ resource "google_project_service" "services" {
   service = "sql-component.googleapis.com"
 }
 
+resource "time_resource" "wait_30_seconds" {
+  depends_on = [google_project_service.services]
+
+  create_duration = "30s"
+}
+
 resource "google_sql_database_instance" "primary" {
   name             = var.gcp_pg_name_primary
   database_version = var.gcp_pg_database_version
