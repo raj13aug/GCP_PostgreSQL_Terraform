@@ -3,7 +3,7 @@ resource "google_project_service" "services" {
   service = "sql-component.googleapis.com"
 }
 
-resource "time_resource" "wait_30_seconds" {
+resource "time_sleep" "wait_30_seconds" {
   depends_on = [google_project_service.services]
 
   create_duration = "30s"
