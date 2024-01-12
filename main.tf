@@ -3,8 +3,18 @@ resource "google_project_service" "services" {
   service = "sqladmin.googleapis.com"
 }
 
+resource "google_project_service" "sql-component" {
+  project = var.project
+  service = "sql-component.googleapis.com"
+}
+
+resource "google_project_service" "servicenetworking" {
+  project = var.project
+  service = "servicenetworking.googleapis.com"
+}
+
 resource "time_sleep" "wait_30_seconds" {
-  depends_on = [google_project_service.services]
+  depends_on = [google_project_service.services, google_project_service.sql-component, google_project_service.servicenetworking]
 
   create_duration = "30s"
 }
